@@ -1,5 +1,6 @@
 package com.ank30.mondaymorning;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,11 +34,9 @@ public class Favorites extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*
-                Intent intent = new Intent(getApplicationContext(), IntentClass.class);
-                intent.putExtra("Key", Value);
+                Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
+                intent.putExtra("Article", 1);
                 startActivity(intent);
-                */
             }
         });
     }
