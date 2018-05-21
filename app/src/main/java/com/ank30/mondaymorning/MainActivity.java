@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout tabLayout;
+    public static boolean loginStatus = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

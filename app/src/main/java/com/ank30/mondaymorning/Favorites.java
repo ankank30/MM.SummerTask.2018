@@ -35,7 +35,7 @@ public class Favorites extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
-                intent.putExtra("Article", 1);
+                intent.putExtra("Article", position + 1);
                 startActivity(intent);
             }
         });
