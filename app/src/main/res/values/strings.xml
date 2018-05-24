@@ -68,7 +68,7 @@
         "that does not change. If an object changes elevation, it should return to its resting "
         "elevation as soon as possible.\n\n"
 
-        "Component elevations.\n\n"
+        <b>"Component elevations.\n\n"</b>
 
         "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
         "does not vary from 6dp in one app to 16dp in another app).\n"
@@ -106,5 +106,10 @@
         "technologically advanced and open to imagination and magic.\n"
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
         "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+    </string>
+    <string name="twoLineText">
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
     </string>
 </resources>

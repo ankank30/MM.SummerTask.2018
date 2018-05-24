@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,11 +22,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewParent;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout tabLayout;
     public static boolean loginStatus = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,6 @@ public class MainActivity extends AppCompatActivity
 
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
 
     }
 
