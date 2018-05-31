@@ -7,11 +7,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_favorites"
-            android:icon="@android:drawable/btn_star"
+            android:checkable="false"
+            android:icon="@drawable/md_fav"
             android:title="Favorites" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:checkable="false"
+            android:icon="@drawable/md_settings"
             android:title="Settings" />
     </group>
 
@@ -21,15 +23,18 @@
             <menu>
                 <item
                     android:id="@+id/nav_healthEmergency"
-                    android:icon="@android:drawable/ic_menu_add"
+                    android:checkable="false"
+                    android:icon="@drawable/local_hospital_black"
                     android:title="Health and Emergency" />
                 <item
                     android:id="@+id/nav_hallOfResidence"
-                    android:icon="@drawable/ic_menu_send"
+                    android:checkable="false"
+                    android:icon="@drawable/md_building"
                     android:title="Hall of Residence" />
                 <item
                     android:id="@+id/nav_studentActivityCenter"
-                    android:icon="@drawable/ic_menu_send"
+                    android:checkable="false"
+                    android:icon="@drawable/md_student_activity_center"
                     android:title="Student Activity Center" />
             </menu>
         </item>
@@ -38,23 +43,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_contactUs"
-            android:icon="@android:drawable/ic_menu_call"
+            android:checkable="false"
+            android:icon="@drawable/md_contacts"
             android:title="Contact Us" />
     </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_rateThisApp"
-            android:icon="@drawable/ic_menu_send"
+            android:checkable="false"
+            android:icon="@drawable/md_star"
             android:title="Rate this App" />
         <item
             android:id="@+id/nav_shareThisApp"
-            android:icon="@drawable/ic_menu_send"
+            android:checkable="false"
+            android:icon="?attr/actionModeShareDrawable"
             android:title="Share this App" />
     </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_reportABug"
-            android:icon="@drawable/ic_menu_send"
+            android:checkable="false"
+            android:icon="@drawable/md_report_bug"
             android:title="Report A Bug" />
     </group>
 

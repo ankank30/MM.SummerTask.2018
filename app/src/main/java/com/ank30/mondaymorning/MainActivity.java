@@ -2,7 +2,9 @@ package com.ank30.mondaymorning;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity
     TabLayout tabLayout;
     ViewPager viewPager;
 
+    public static boolean loadImage;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        sharedPreferences = getSharedPreferences("MMPrefs", Context.MODE_PRIVATE);
+        loadImage = sharedPreferences.getBoolean("loadImage", true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +128,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_favorites) {
             intent = new Intent(getApplicationContext(), Favorites.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_settings) {
+            intent = new Intent(getApplicationContext(), Settings.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_healthEmergency) {
+            intent = new Intent(getApplicationContext(), HealthCenter.class);
             startActivity(intent);
         }
 
