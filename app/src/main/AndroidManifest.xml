@@ -30,7 +30,8 @@
             android:label="@string/title_activity_article"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Settings" />
-        <activity android:name=".HealthCenter"></activity>
+        <activity android:name=".HealthCenter" />
+        <activity android:name=".HallOfResidence"></activity>
     </application>
 
 </manifest>
