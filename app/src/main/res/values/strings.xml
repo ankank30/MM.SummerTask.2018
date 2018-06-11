@@ -112,4 +112,18 @@
         "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
         "technologically advanced and open to imagination and magic.\n"
     </string>
+
+    <string name="chief_warden_of_halls">Chief Warden Of Halls</string>
+    <string name="prof_manoranjan_barik">Prof. Manoranjan Barik</string>
+    <string name="chief_warden_address_number">Qrs. No B-2, NIT Campus  9437145284</string>
+    <string name="hall_of_residence">Hall Of Residence</string>
+    <string name="kms_warden_number">9583866756</string>
+    <string name="prof_monalisa_mishra">Prof. Monalisa Mishra</string>
+    <string name="kiran_mazumdar_shaw_hall">Kiran Mazumdar Shaw Hall</string>
+    <string name="cvr_number">9438246593</string>
+    <string name="prof_poonam_singh">Prof. Poonam Singh</string>
+    <string name="c_v_raman_hall">C. V. Raman Hall</string>
+    <string name="mv_number">8018667075</string>
+    <string name="prof_manas_ranjan_tripathy">Prof. Manas Ranjan Tripathy</string>
+
 </resources>

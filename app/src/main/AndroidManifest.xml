@@ -29,9 +29,14 @@
             android:name=".ArticleActivity"
             android:label="@string/title_activity_article"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Settings" />
-        <activity android:name=".HealthCenter" />
-        <activity android:name=".HallOfResidence"></activity>
+        <activity android:name=".Settings"
+            android:label="Settings"/>
+        <activity android:name=".HealthCenter"
+            android:label="Health Center"/>
+        <activity android:name=".HallOfResidence"
+            android:label="Hall Of Residence"/>
+        <activity android:name=".StudentActivityCentre"
+            android:label="Student Activity Centre"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.ank30.mondaymorning;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         sharedPreferences = getSharedPreferences("MMPrefs", Context.MODE_PRIVATE);
         loadImage = sharedPreferences.getBoolean("loadImage", true);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -134,6 +137,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_healthEmergency) {
             intent = new Intent(getApplicationContext(), HealthCenter.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_hallOfResidence) {
+            intent = new Intent(getApplicationContext(), HallOfResidence.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_studentActivityCenter){
+            intent = new Intent(getApplicationContext(), StudentActivityCentre.class);
             startActivity(intent);
         }
 

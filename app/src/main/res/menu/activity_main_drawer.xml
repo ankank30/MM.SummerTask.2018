@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -42,10 +43,16 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_contactUs"
-            android:checkable="false"
-            android:icon="@drawable/md_contacts"
-            android:title="Contact Us" />
+            android:title="Quick Tools"
+            app:showAsAction="never">
+            <menu>
+                <item
+                    android:id="@+id/nav_contactUs"
+                    android:checkable="false"
+                    android:icon="@drawable/md_contacts"
+                    android:title="Contact Us" />
+            </menu>
+        </item>
     </group>
     <group android:checkableBehavior="single">
         <item
