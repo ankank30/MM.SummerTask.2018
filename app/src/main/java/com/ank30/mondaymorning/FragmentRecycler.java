@@ -1,6 +1,5 @@
 package com.ank30.mondaymorning;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,9 +39,7 @@ public class FragmentRecycler extends Fragment {
         mAdapter = new RecyclerViewAdapter(getActivity(), titleList);
         recyclerView.setAdapter(mAdapter);
 
-
         return view;
     }
-
 
 }

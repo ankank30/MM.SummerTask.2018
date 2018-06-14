@@ -24,6 +24,4 @@ public class FragmentPoll extends Fragment {
         View view = inflater.inflate(R.layout.fragment_poll, container, false);
         return view;
     }
-
-
 }
