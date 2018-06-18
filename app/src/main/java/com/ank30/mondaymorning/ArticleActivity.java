@@ -45,8 +45,6 @@ public class ArticleActivity extends AppCompatActivity {
                     .with(getApplicationContext())
                     .load("http://mondaymorning.nitrkl.ac.in/uploads/post/DSC05325.jpg")
                     .into(articleImage);
-
-            Log.i("Image", "loaded");
         } catch (Exception e) {
             e.printStackTrace();
         }

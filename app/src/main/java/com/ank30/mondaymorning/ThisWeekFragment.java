@@ -41,7 +41,6 @@ public class ThisWeekFragment extends Fragment {
         setupViewPager(viewPager);
 
         tabLayout.setupWithViewPager(viewPager);
-
         return view;
     }
 
