@@ -33,11 +33,11 @@ public class FragmentRecycler extends Fragment {
         titleList.add("Article 1");
         titleList.add("Article 2");
 
-        recyclerView = view.findViewById(R.id.mainActivityRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RecyclerViewAdapter(getActivity(), titleList);
-        recyclerView.setAdapter(mAdapter);
+        //recyclerView = view.findViewById(R.id.mainActivityRecyclerView);
+        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        //recyclerView.setLayoutManager(layoutManager);
+        //mAdapter = new RecyclerViewAdapter(getActivity(), titleList);
+        //recyclerView.setAdapter(mAdapter);
 
         return view;
     }

@@ -13,17 +13,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/NestedScrollView">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/articleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/large_text"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateNAuthorsTextView" />
 
             <TextView
                 android:id="@+id/commentTextView"
@@ -34,7 +36,9 @@
                 android:padding="8dp"
                 android:text="Comments"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView"
@@ -42,7 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:padding="8dp"
-                android:layout_below="@+id/commentTextView">
+                android:layout_below="@+id/commentTextView"
+                app:layout_constraintTop_toBottomOf="@+id/commentTextView"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -71,16 +77,57 @@
 
             </android.support.v7.widget.CardView>
 
-            <EditText
-                android:id="@+id/commentEnter"
+            <TextView
+                android:id="@+id/postCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cardView"
-                android:ems="10"
-                android:hint="Enter a comment"
-                android:inputType="textMultiLine"
-                android:textColor="#000000" />
-        </RelativeLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Category"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dateNAuthorsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Date | Authors"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postCategories" />
+
+            <LinearLayout
+                android:id="@+id/dummyLinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:background="#B3B3B3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postCategories" />
+
+            <LinearLayout
+                android:id="@+id/dummyLinearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:background="#B3B3B3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateNAuthorsTextView" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

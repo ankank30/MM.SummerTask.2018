@@ -2,6 +2,8 @@ package com.ank30.mondaymorning;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +13,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<String> values;
+    private JSONArray values;
     private Context appContext;
+    private String imagePrefix, authors;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtHeader;
-        public TextView txtFooter;
+        public TextView txtHeader, txtFooter, dateTextView, authorTextView;
         public ImageView imageView;
         public View layout;
 
@@ -29,11 +35,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             txtHeader = (TextView) view.findViewById(R.id.card_title_textview);
             txtFooter = (TextView) view.findViewById(R.id.card_content_textview);
             imageView = (ImageView) view.findViewById(R.id.card_imageview);
+            dateTextView = (TextView) view.findViewById(R.id.dateTextView);
+            authorTextView = (TextView) view.findViewById(R.id.authorTextView);
         }
     }
 
-    public RecyclerViewAdapter(Context context, List<String> myDataset) {
-        values = myDataset;
+    public RecyclerViewAdapter(Context context, JSONArray apiRequest, String imagePrefixL) {
+        imagePrefix = imagePrefixL;
+        values = apiRequest;
         appContext = context;
     }
 
@@ -48,34 +57,56 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //remove(position);
-                Intent intent = new Intent(appContext, ArticleActivity.class);
-                intent.putExtra("Article", position + 1);
-                appContext.startActivity(intent);
+        try {
+            holder.txtHeader.setText(values.getJSONObject(position).getString("post_title"));
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(appContext, ArticleActivity.class);
+                    try {
+                        intent.putExtra("articleID", values.getJSONObject(position).getInt("post_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    appContext.startActivity(intent);
+                }
+            });
+            holder.dateTextView.setText(values.getJSONObject(position).getString("post_publish_date"));
+            for(int i = 0; i < values.getJSONObject(position).getJSONArray("authors").length(); i++){
+                authors += values.getJSONObject(position).getJSONArray("authors").getString(i);
+                if(i != (values.getJSONObject(position).getJSONArray("authors").length() - 1)){
+                    authors += ", ";
+                }
             }
-        });
-        holder.txtFooter.setText(R.string.twoLineText);
-        holder.txtFooter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(appContext, ArticleActivity.class);
-                intent.putExtra("Article", position + 1);
-                appContext.startActivity(intent);
+            if(authors.startsWith("null")) {
+                authors = authors.substring("null".length(), authors.length());
             }
-        });
-        Glide
-                .with(appContext)
-                .load("http://mondaymorning.nitrkl.ac.in/uploads/post/Screenshot (115) (3).png")
-                .into(holder.imageView);
+            holder.authorTextView.setText(authors);
+            authors = null;
+            holder.txtFooter.setText(values.getJSONObject(position).getString("post_excerpt"));
+            holder.txtFooter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(appContext, ArticleActivity.class);
+                    try {
+                        intent.putExtra("articleID", values.getJSONObject(position).getInt("post_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    appContext.startActivity(intent);
+                }
+            });
+            Glide
+                    .with(appContext)
+                    .load(imagePrefix + values.getJSONObject(position).getString("featured_image"))
+                    .into(holder.imageView);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return values.size();
+        return values.length();
     }
 }

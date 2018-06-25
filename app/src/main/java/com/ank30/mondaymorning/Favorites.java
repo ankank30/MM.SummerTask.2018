@@ -31,10 +31,10 @@ public class Favorites extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.favoriteActivityRecyclerView);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RecyclerViewAdapter(getApplicationContext(), titleList);
-        recyclerView.setAdapter(mAdapter);
+        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        //recyclerView.setLayoutManager(layoutManager);
+        //mAdapter = new RecyclerViewAdapter(getApplicationContext(), titleList);
+        //recyclerView.setAdapter(mAdapter);
 
     }
 

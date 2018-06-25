@@ -27,8 +27,8 @@
                 android:id="@+id/card_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/pre_load_image" />
 
             <TextView
                 android:id="@+id/card_content_textview"
@@ -49,6 +49,7 @@
                 android:layout_alignBottom="@+id/card_imageview"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:background="@drawable/text_view_background_gradient"
                 android:backgroundTint="@color/cardview_shadow_start_color"
                 android:padding="12dp"
                 android:text="TextView"
