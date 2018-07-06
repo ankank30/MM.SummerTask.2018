@@ -47,7 +47,7 @@ public class CategoriesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new FragmentRecycler(), "Recycler");
+        adapter.addFragment(new FragmentRecycler(), "Departments");
         adapter.addFragment(new FragmentPoll(), "Poll");
         viewPager.setAdapter(adapter);
     }

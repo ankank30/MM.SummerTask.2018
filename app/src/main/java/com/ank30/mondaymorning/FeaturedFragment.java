@@ -16,8 +16,6 @@ import com.bumptech.glide.Glide;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class FeaturedFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -35,7 +33,7 @@ public class FeaturedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
+        View view = inflater.inflate(R.layout.featured_fragment, container, false);
         ImageView slideImageView = view.findViewById(R.id.slideImageView);
         TextView slideTitleTextView = view.findViewById(R.id.titleSlideTextView);
         TextView slideAuthorTextView = view.findViewById(R.id.authorSlideTextView);

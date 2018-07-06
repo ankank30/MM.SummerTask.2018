@@ -17,8 +17,6 @@ public class DownloadApi extends AsyncTask<String, Void, String>{
     @Override
     protected String doInBackground(String... apiUrls) {
 
-        Log.i("downloadApi", "running");
-
         try {
             URL url = new URL(apiUrls[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

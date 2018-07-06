@@ -102,6 +102,7 @@ public class ArticleActivity extends AppCompatActivity {
                     .with(getApplicationContext())
                     .load(jsonObject.getString("imageUrlPrefix") + jsonObject.getJSONObject("post").getString("featured_image"))
                     .into(articleImage);
+            articleImage.setBackgroundResource(R.drawable.text_view_background_gradient);
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
