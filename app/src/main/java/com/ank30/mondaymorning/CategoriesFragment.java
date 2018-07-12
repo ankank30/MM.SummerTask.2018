@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +43,15 @@ public class CategoriesFragment extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
+        viewPager = view.findViewById(R.id.viewPager);
+
         return view;
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new FragmentRecycler(), "Departments");
+        Log.i("ClassFrag", "RecyclerFragment onCall Run");
         adapter.addFragment(new FragmentPoll(), "Poll");
         viewPager.setAdapter(adapter);
     }

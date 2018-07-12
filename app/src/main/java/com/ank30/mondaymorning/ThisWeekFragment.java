@@ -45,7 +45,7 @@ public class ThisWeekFragment extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new FeaturedFragment(), "Featured");
         adapter.addFragment(new AllNewsFragment(), "All News");
         adapter.addFragment(new FragmentPoll(), "Buzz");

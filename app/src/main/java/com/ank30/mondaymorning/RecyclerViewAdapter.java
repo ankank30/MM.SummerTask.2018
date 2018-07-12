@@ -90,7 +90,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             authors = null;
             holder.txtFooter.setText(values.getJSONObject(position).getString("post_excerpt"));
             for(int i = 0; i < values.getJSONObject(position).getJSONArray("categories").length(); i++){
-                categories += values.getJSONObject(position).getJSONArray("categories").getJSONObject(0).getString("post_category_name");
+                categories += values.getJSONObject(position).getJSONArray("categories").getJSONObject(i).getString("post_category_name");
                 if(i != (values.getJSONObject(position).getJSONArray("categories").length() - 1)){
                     categories += ",\n";
                 }
