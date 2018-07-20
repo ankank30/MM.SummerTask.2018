@@ -61,25 +61,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         try {
-            holder.txtHeader.setText(values.getJSONObject(position).getString("post_title"));
+            holder.txtHeader.setText(values.getJSONObject(holder.getAdapterPosition()).getString("post_title"));
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(appContext, ArticleActivity.class);
                     try {
-                        intent.putExtra("articleID", values.getJSONObject(position).getInt("post_id"));
+                        intent.putExtra("articleID", values.getJSONObject(holder.getAdapterPosition()).getInt("post_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     appContext.startActivity(intent);
                 }
             });
-            holder.dateTextView.setText(values.getJSONObject(position).getString("post_publish_date"));
-            for(int i = 0; i < values.getJSONObject(position).getJSONArray("authors").length(); i++){
-                authors += values.getJSONObject(position).getJSONArray("authors").getString(i);
-                if(i != (values.getJSONObject(position).getJSONArray("authors").length() - 1)){
+            holder.dateTextView.setText(values.getJSONObject(holder.getAdapterPosition()).getString("post_publish_date"));
+            for(int i = 0; i < values.getJSONObject(holder.getAdapterPosition()).getJSONArray("authors").length(); i++){
+                authors += values.getJSONObject(holder.getAdapterPosition()).getJSONArray("authors").getString(i);
+                if(i != (values.getJSONObject(holder.getAdapterPosition()).getJSONArray("authors").length() - 1)){
                     authors += ", ";
                 }
             }
@@ -88,10 +88,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
             holder.authorTextView.setText(authors);
             authors = null;
-            holder.txtFooter.setText(values.getJSONObject(position).getString("post_excerpt"));
-            for(int i = 0; i < values.getJSONObject(position).getJSONArray("categories").length(); i++){
-                categories += values.getJSONObject(position).getJSONArray("categories").getJSONObject(i).getString("post_category_name");
-                if(i != (values.getJSONObject(position).getJSONArray("categories").length() - 1)){
+            holder.txtFooter.setText(values.getJSONObject(holder.getAdapterPosition()).getString("post_excerpt"));
+            for(int i = 0; i < values.getJSONObject(holder.getAdapterPosition()).getJSONArray("categories").length(); i++){
+                categories += values.getJSONObject(holder.getAdapterPosition()).getJSONArray("categories").getJSONObject(i).getString("post_category_name");
+                if(i != (values.getJSONObject(holder.getAdapterPosition()).getJSONArray("categories").length() - 1)){
                     categories += ",\n";
                 }
             }
@@ -100,7 +100,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
             Glide
                     .with(appContext)
-                    .load(imagePrefix + values.getJSONObject(position).getString("featured_image"))
+                    .load(imagePrefix + values.getJSONObject(holder.getAdapterPosition()).getString("featured_image"))
                     .into(holder.imageView);
             holder.categoryNameTextView.setText(categories);
             categories = null;

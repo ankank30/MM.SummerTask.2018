@@ -1,5 +1,6 @@
 package com.ank30.mondaymorning;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -140,12 +141,16 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             }
-
             @Override
             public void onDrawerStateChanged(int newState) {
-
             }
         });
+    }
+
+    public void fabButtonInitialize(View view){
+        Intent intent = new Intent(getApplicationContext(), CategoryLoader.class);
+        intent.putExtra("option", (String) view.getTag());
+        startActivity(intent);
     }
 
     private void setupMainPager(ViewPager viewPager) {

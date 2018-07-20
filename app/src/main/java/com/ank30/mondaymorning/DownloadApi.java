@@ -12,14 +12,19 @@ import java.net.URL;
 
 public class DownloadApi extends AsyncTask<String, Void, String>{
 
-    private String resultString;
+    private String resultString = "";
 
     @Override
     protected String doInBackground(String... apiUrls) {
 
         try {
             URL url = new URL(apiUrls[0]);
+
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            if(apiUrls.length>1)
+            {
+                urlConnection.setRequestProperty("Cookie", apiUrls[1]);
+            }
 
             InputStream inputStream = urlConnection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

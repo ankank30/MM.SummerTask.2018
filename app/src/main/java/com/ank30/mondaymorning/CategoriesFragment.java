@@ -50,9 +50,11 @@ public class CategoriesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new FragmentRecycler(), "Departments");
-        Log.i("ClassFrag", "RecyclerFragment onCall Run");
-        adapter.addFragment(new FragmentPoll(), "Poll");
+        adapter.addFragment(new DepartmentFragment(), "Departments");
+        adapter.addFragment(new CampusFragment(), "Campus");
+        adapter.addFragment(new ViewsFragment(), "Views");
+        adapter.addFragment(new CareerFragment(), "Career");
+
         viewPager.setAdapter(adapter);
     }
 

@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,15 +31,28 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xmlpull.v1.XmlPullParser;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ResponseCache;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class ArticleActivity extends AppCompatActivity {
 
+    RecyclerView commentRecyclerView;
+    RecyclerView.Adapter mAdapter;
+
     DownloadApi downloadApi = new DownloadApi();
-    String apiReturned;
+    DownloadApi commentsDownloadApi = new DownloadApi();
+    String apiReturned, commentApiReturned;
     int postId, i;
 
     String postCategories, datesAuthors, article;
@@ -114,18 +131,75 @@ public class ArticleActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    startActivity(shareIntent);
+                    startActivity(Intent.createChooser(shareIntent, "Share post"));
                 }
             });
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        try {
+            commentApiReturned = commentsDownloadApi.execute("http://mondaymorning.nitrkl.ac.in/api/comment/get/" + postId).get();
+            if (commentApiReturned.startsWith("null")) {
+                commentApiReturned = commentApiReturned.substring("null".length(), commentApiReturned.length());
+            }
+            JSONObject jsonObject = new JSONObject(commentApiReturned);
+            String imageUrlPrefix = jsonObject.getString("imageUrlPrefix");
+            commentRecyclerView = findViewById(R.id.commentRecyclerView);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            commentRecyclerView.setLayoutManager(layoutManager);
+            mAdapter = new CommentRecyclerViewAdapter(getApplicationContext(),
+                    jsonObject.getJSONArray("comments"),
+                    imageUrlPrefix, postId); //Used hardcoded url because of my design is different
+            commentRecyclerView.setAdapter(mAdapter);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        ConstraintLayout loginConstraintLayout;
+        if(MainActivity.loginStatus) {
+            loginConstraintLayout = findViewById(R.id.loginTrueConstraintLayout);
+            loginConstraintLayout.setVisibility(View.VISIBLE);
+            TextView username = findViewById(R.id.commentUserName);
+            username.setText(MainActivity.username);
+        } else {
+            loginConstraintLayout = findViewById(R.id.loginFalseConstraintLayout);
+            loginConstraintLayout.setVisibility(View.VISIBLE);
+        }
         DisplayMetrics displayMetrics = getApplication().getResources().getDisplayMetrics();
 
         AppBarLayout appBarLayout = findViewById(R.id.app_bar);
         appBarLayout.setMinimumHeight((int) ((displayMetrics.widthPixels / displayMetrics.density) * 500) / 875);
+    }
+
+    public void loginButtonPressed(View view){
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+    }
+
+    public void commentPostButtonPressed(View view){
+        URL url = null;
+        try {
+            url = new URL("http://exampleurl.com/");
+            HttpURLConnection client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("POST");
+            client.setRequestProperty("Key","Value");
+            client.setDoOutput(true);
+            OutputStream outputPost = client.getOutputStream();
+            //writeStream(outputPost);
+            outputPost.flush();
+            outputPost.close();
+            //client.setFixedLengthStreamingMode(outputPost.getBytes().length);
+            client.setChunkedStreamingMode(0);
+            client.getResponseCode();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //finally {
+        //    if(client != null) // Make sure the connection is not null.
+        //        client.disconnect();
+        //}
     }
 
     @Override
